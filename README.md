@@ -1,4 +1,4 @@
-# FlaskApp
+# FlaskApp-paint_products_store
 Веб-приложение на локальном сервере, выполненное на веб-фреймворке Flask с использованием html, css, javascript. Связано с базой данных MySQL (см. файл "конфигурация_БД_paint_products_store").
 Для работы использовался редактор кода VS Code.
 
