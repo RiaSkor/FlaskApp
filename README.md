@@ -7,11 +7,11 @@
 2) создать виртуальное окружение (на Windows): py -m venv virtenv;
 3) активировать виртуальное окружение (на Windows): virtenv\Scripts\activate;
 4) находясь в (virtenv) установить зависимости:
-    pip3 install flask
-    pip3 install flask-bootstrap4
-    MySQL клиент: pip3 install flask-mysqldb
-    пакет конфигурации БД: pip3 install pyyaml
-    редактор текста: pip3 install Flask-CKEditor
-5) запустить приложение (на Windows): py app.py
+   pip3 install flask
+   pip3 install flask-bootstrap4
+   pip3 install flask-mysqldb
+   pip3 install pyyaml
+   pip3 install Flask-CKEditor
+6) запустить приложение (на Windows): py app.py
 
 В файле db.yaml прописать свои данные от MySQL Server.
