@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block sub_content %}
+
+   <!-- Slider Area Start -->
+   <div class="slider-area pb-60">
+    <div class="slider-wrapper theme-default  nivo2">
+        <!-- Slider Background  Image Start-->
+        <div id="slider" class="nivoSlider">
+            <a href="shop.html"><img src="static/img/FirstSlide.jpg" data-thumb="img/3.jpg" alt="" title="#slider-1-caption1"/></a>
+            <a href="shop.html"><img src="static/img/SecondSlide.jpg" data-thumb="img/4.jpg" alt="" title="#slider-1-caption2"/></a>
+        </div>
+        <!-- Slider Background  Image Start-->
+        <div id="slider-1-caption1" class="nivo-html-caption nivo-caption">
+            <div class="text-content-wrapper">
+                <div class="container">
+                    <div class="text-content">
+                        <h4 class="title2 wow bounceInLeft mb-16" data-wow-duration="2s" data-wow-delay="0s">Большой выбор продукции</h4>
+                        <h1 class="title1 wow bounceInRight mb-16" data-wow-duration="2s" data-wow-delay="1s">Лаки & Краски & Морилки</h1>
+                        <div class="banner-readmore wow bounceInUp mt-35" data-wow-duration="2s" data-wow-delay="2s">
+
+                            {% if session.login %}
+                            <a class="button slider-btn" href="/products2">Купить сейчас</a>
+                            {% else %}
+                            <a class="button slider-btn" href="/register2">Зарегистрироваться сейчас</a>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        <div id="slider-1-caption2" class="nivo-html-caption nivo-caption">
+            <div class="text-content-wrapper">
+                <div class="container">
+                    <div class="text-content slide-2">
+                        <h4 class="title2 wow bounceInLeft mb-16" data-wow-duration="1s" data-wow-delay="1s">Большой выбор продукции</h4>
+                        <h1 class="title1 wow flipInX  mb-16" data-wow-duration="1s" data-wow-delay="2s">Лаки & Краски & Морилки</h1>
+                        <div class="banner-readmore wow bounceInUp mt-35" data-wow-duration="1s" data-wow-delay="2s">
+                            
+                            {% if session.login %}
+                            <a class="button slider-btn" href="/products2">Купить сейчас</a>
+                            {% else %}
+                            <a class="button slider-btn" href="/register2">Зарегистрироваться сейчас</a>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>       
+            </div>
+        </div>                  
+    </div>
+</div>
+<!-- Slider Area End --> 
+<!-- Banner Start -->
+<div class="upper-banner banner pb-60">
+  <div class="container">
+     <div class="row">
+         <!-- Single Banner Start -->
+         <div class="col-sm-4">
+              <div class="single-banner zoom">
+                  <!-- <a href="#"><img src="static/img/banner/3.jpg" alt="slider-banner"></a> -->
+                  <a href="#"><img src="static/img/реклама1.jpg" alt="slider-banner" style="width: 370px; height: 205px;"></a>
+              </div>
+          </div>
+         <!-- Single Banner End -->
+          <!-- Single Banner Start -->
+         <div class="col-sm-4">
+              <div class="single-banner zoom">
+                  <a href="#"><img src="static/img/реклама2.jpg" alt="slider-banner" style="width: 370px; height: 205px;"></a>
+              </div>
+          </div>
+         <!-- Single Banner End -->
+          <!-- Single Banner Start -->
+         <div class="col-sm-4">
+              <div class="single-banner zoom">
+                  <a href="#"><img src="static/img/реклама3.jpg" alt="slider-banner" style="width: 370px; height: 205px;"></a>
+              </div>
+          </div>
+         <!-- Single Banner End -->
+     </div>
+     <!-- Row End -->
+  </div>
+  <!-- Container End -->
+</div>                                
+<!-- Banner End -->
+
+{% endblock %}

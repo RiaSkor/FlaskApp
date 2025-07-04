@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block sub_content %}
+
+<div class="container d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+	<div class="card w-100" style="max-width: 400px;">
+		<div class="card-body">
+			<h3 class="card-title text-center mb-4">Регистрация пользователя</h3>
+
+    <form method="POST">
+        <div class="form-group">
+            <label for="surname_client">Фамилия*</label>
+            <input type="text" class="form-control" id="surname_client" name="surname_client" placeholder="Введите фамилию" value="{{ user_details.surname_client if user_details.surname_client else '' }}">
+        </div>
+        <div class="form-group">
+            <label for="name_client">Имя*</label>
+            <input type="text" class="form-control" id="name_client" name="name_client" placeholder="Введите имя" value="{{ user_details.name_client if user_details.name_client else '' }}">
+        </div>
+        <div class="form-group">
+            <label for="patronymic_client">Отчество</label>
+            <input type="text" class="form-control" id="patronymic_client" name="patronymic_client" placeholder="Введите отчество" value="{{ user_details.patronymic_client if user_details.patronymic_client else '' }}">
+        </div>
+
+
+        <div class="form-group">
+          <label for="email">Почтовый адрес*</label>
+          <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="name.@example.com" value="{{ user_details.email if user_details.email else '' }}">
+        </div>
+        <div class="form-group">
+          <label for="password">Пароль*</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Введите пароль">
+          <h8>Пароль должен содержать минимум 8 символов <br>
+          Aa-Zz, 0-9, специальный символ (!@#$%^&*(),.?\":{}|<>)</h8>
+        </div>
+
+        <div class="form-group">
+            <label for="confirmpassword">Подтверждение пароля*</label>
+            <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" placeholder="Повторите пароль">
+        </div>
+
+        <p class="lost-password"><a href="/login2">Уже есть аккаунт?</a></p>
+        
+        <button type="submit" class="return-customer-btn">Зарегистрироваться</button>
+      </form>
+
+    </div>
+	</div>
+</div>
+
+{% endblock %}

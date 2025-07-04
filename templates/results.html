@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block sub_content %}
+
+<div class="cart-main-area pb-80 pb-sm-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-content table-responsive mb-50">
+
+                    <table class="table">
+                        <thead>
+                          <tr>
+                              <th scope="col">Название продукта</th>
+                              <th scope="col">Тип материала</th>
+                              <th scope="col">Тип красителя</th>
+                              <th scope="col">Цвет</th>
+                              <th scope="col">Блеск</th>
+                              <th scope="col">Метод нанесения</th>
+                              <th scope="col">Цена</th>
+                              <th scope="col">Объём, литр</th>
+                          </tr>
+                        </thead>
+
+                        {% for result in results %}
+
+                        <tbody>
+                            <tr> 
+                                <td><a href="/selected-product{{ result['id_product'] }}">{{result['name_product']}}</a></td>
+                                <td>{{result['name_type_material']}}</td>
+                                <td>{{result['name_type_coloring_agent']}}</td>
+                                <td>{{result['name_color']}}</td>
+                                <td>{{result['name_gloss']}}</td>
+                                <td>{{result['name_method_application']}}</td>                    
+                                <td>{{result['price']}}</td>
+                                <td>{{result['volume']}}</td>
+                            </tr>
+                        </tbody>
+
+                        {% endfor %}
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

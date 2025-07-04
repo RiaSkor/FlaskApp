@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block sub_content %}
+
+<div class="container d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+	<div class="card w-100" style="max-width: 400px;">
+		<div class="card-body">
+			<h3 class="card-title text-center mb-4">Регистрация нового сотрудника</h3>
+
+    <form method="POST">
+        <div class="form-group">
+            <label for="surname_staff">Фамилия*</label>
+            <input type="text" class="form-control" id="surname_staff" name="surname_staff" placeholder="Введите фамилию" value="{{ user_details.surname_staff if user_details.surname_staff else '' }}">
+        </div>
+        <div class="form-group">
+            <label for="name_staff">Имя*</label>
+            <input type="text" class="form-control" id="name_staff" name="name_staff" placeholder="Введите имя" value="{{ user_details.name_staff if user_details.name_staff else '' }}">
+        </div>
+        <div class="form-group">
+            <label for="patronymic_staff">Отчество</label>
+            <input type="text" class="form-control" id="patronymic_staff" name="patronymic_staff" placeholder="Введите отчество" value="{{ user_details.patronymic_staff if user_details.patronymic_staff else '' }}">
+        </div>
+
+
+        <div class="form-group">
+          <label for="login_staff">Логин*</label>
+          <input type="text" class="form-control" id="login_staff" name="login_staff" placeholder="Введите логин" value="{{ user_details.login_staff if user_details.login_staff else '' }}">
+        </div>
+        <div class="form-group">
+          <label for="password_staff">Пароль*</label>
+          <input type="password" class="form-control" id="password_staff" name="password_staff" placeholder="Введите пароль">
+          <h8>Пароль должен содержать минимум 8 символов <br>
+          Aa-Zz, 0-9, специальный символ (!@#$%^&*(),.?\":{}|<>)</h8>
+        </div>
+
+        <div class="form-group">
+            <label for="confirmpassword">Подтверждение пароля*</label>
+            <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" placeholder="Повторите пароль">
+        </div>
+
+        <div class="form-group">
+          <label for="id_roles">Роль</label>
+          <input type="int" class="form-control" id="id_roles" name="id_roles" value="2">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Зарегистрировать</button>
+      </form>
+
+    </div>
+	</div>
+</div>
+
+{% endblock %}

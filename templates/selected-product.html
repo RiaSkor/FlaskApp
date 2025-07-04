@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% block sub_content %}
+    
+<!-- Breadcrumb Start -->
+<div class="breadcrumb-area ptb-60 ptb-sm-30">
+    <div class="container">
+        <div class="breadcrumb">
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/products2">Товары</a></li>
+                {% if products %}
+                    <li><a href="#">{{products['name_categories']}}</a></li>
+                    <li class="active"><a href="#">{{products['name_product']}}</a></li>
+                {% endif %}
+                
+            </ul>
+        </div>
+    </div>
+    <!-- Container End -->
+</div>
+<!-- Breadcrumb End -->
+
+<div class="main-product-thumbnail pb-60">
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-lg-7">
+                <div class="thubnail-desc fix"> 
+                    
+
+                {% if products['id_categories'] == 1 %}
+
+                    <div class="thubnail-desc fix">
+                        <h3 class="product-header">{{ products['name_product'] }}</h3>
+                        <br>
+                        <h3 class="product-header">Объём в литрах: {{ products['volume'] }}</h3>
+                        <br>
+                        
+                        <div class="pro-price mb-10">
+                            <p><span class="price" id="product-price">{{ products['price'] }} рублей</span></p>
+                        </div>
+                        
+                        <div class="pro-ref mb-15">
+                            <p><span class="in-stock">Количество поштучно:</span></p>
+                            <div class="box-quantity">
+                                <form id="quantity-form" onsubmit="return false;"> <!-- Предотвращаем отправку формы -->
+                                    <input class="number" id="numeric" type="number" min="1" max="10" value="1">
+                                    <span class="sku"></span>
+                                    <a class="add-cart" href="#" id="add-button">Рассчитать</a>
+                                </form>
+                            </div>
+                        </div>
+                        
+
+                        <div class="product-link">
+
+                            <table class="table">
+                                <thead>
+                                  <tr>
+                                      
+                                      <th scope="col">Тип<br> материала</th>
+                                      <th scope="col">Тип<br> красителя</th>
+                                      <th scope="col">Цвет</th>
+                                      <th scope="col">Блеск</th>
+                                      <th scope="col">Метод<br> нанесения</th>
+                                  </tr>
+                                </thead>        
+                                <tbody>
+                                    <tr> 
+                                    
+                                        <td>{{products['name_type_material']}}</td>
+                                        <td>{{products['name_type_coloring_agent']}}</td>
+                                        <td>{{products['name_color']}}</td>
+                                        <td>{{products['name_gloss']}}</td>
+                                        <td>{{products['name_method_application']}}</td>
+                                    </tr>
+                                </tbody>      
+                            </table>
+
+                        </div>
+                        
+                    </div>
+
+                {% endif %}
+
+
+
+                {% if products['id_categories'] == 2 %}
+
+                    <div class="thubnail-desc fix">
+                        <h3 class="product-header">{{ products['name_product'] }}</h3>
+
+                        <div class="pro-price mb-10">
+                            <p><span class="price" id="product-price">{{ products['price'] }} рублей</span></p>
+                        </div>
+                        
+                        <div class="pro-ref mb-15">
+                            <p><span class="in-stock">Объём в литрах:</span></p>
+                            <div class="box-quantity">
+                                <form id="quantity-form" onsubmit="return false;"> <!-- Предотвращаем отправку формы -->
+                                    <input class="number" id="numeric" type="number" min="1" max="10" value="{{ products['volume'] }}">
+                                    <span class="sku"></span>
+                                    <a class="add-cart" href="#" id="add-button">Рассчитать</a>
+                                </form>
+                            </div>
+                        </div>
+
+
+                        <div class="product-link">
+
+                            <table class="table">
+                                <thead>
+                                  <tr>
+                                      <th scope="col">Тип<br> материала</th>
+                                      <th scope="col">Тип<br> красителя</th>
+                                      <th scope="col">Цвет</th>
+                                      <th scope="col">Блеск</th>
+                                      <th scope="col">Метод<br> нанесения</th>
+                                  </tr>
+                                </thead>        
+                                <tbody>
+                                    <tr>
+                                        <td>{{products['name_type_material']}}</td>
+                                        <td>{{products['name_type_coloring_agent']}}</td>
+                                        <td>{{products['name_color']}}</td>
+                                        <td>{{products['name_gloss']}}</td>
+                                        <td>{{products['name_method_application']}}</td>
+                                    </tr>
+                                </tbody>      
+                            </table>
+
+                        </div>
+                    </div>
+
+                {% endif %}
+
+
+
+                {% if products['id_categories'] == 3 %}
+
+                    <div class="thubnail-desc fix">
+                        <h3 class="product-header">{{ products['name_product'] }}</h3>
+
+                        <div class="pro-price mb-10">
+                            <p><span class="price" id="product-price">{{ products['price'] }} рублей</span></p>
+                        </div>
+                        
+                        <div class="pro-ref mb-15">
+                            <p><span class="in-stock">Объём в литрах:</span></p>
+                            <div class="box-quantity">
+                                <form id="quantity-form" onsubmit="return false;"> <!-- Предотвращаем отправку формы -->
+                                    <input class="number" id="numeric" type="number" min="1" max="10" value="{{ products['volume'] }}">
+                                    <span class="sku"></span>
+                                    <a class="add-cart" href="#" id="add-button">Рассчитать</a>
+                                </form>
+                            </div>
+                        </div>
+
+
+                        <div class="product-link">
+
+                            <table class="table">
+                                <thead>
+                                  <tr>
+                                      <th scope="col">Тип<br> материала</th>
+                                      <th scope="col">Метод<br> нанесения</th>
+                                  </tr>
+                                </thead>        
+                                <tbody>
+                                    <tr>
+                                        <td>{{products['name_type_material']}}</td>
+                                        <td>{{products['name_method_application']}}</td>
+                                    </tr>
+                                </tbody>      
+                            </table>
+
+                        </div>
+                    </div>
+
+                {% endif %}
+                
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    
+
+    <script src="{{ url_for('static', filename='js/VP.js') }}"></script>
+    
+{% endblock %}

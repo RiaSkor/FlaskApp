@@ -1,0 +1,510 @@
+{% extends "base.html" %}
+{% block sub_content %}
+
+    <div class="zagolovok text-center">
+        <h1>Добавление нового продукта</h1>
+    </div>
+
+    <div class="main-product-thumbnail pb-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="thubnail-desc fix">
+                        <div class="thubnail-desc fix form-group">
+    
+                            <form method="POST">
+                                
+                                <div class="form-group">
+                                    <label for="name_product">Название продукта:</label>
+                                    <input type="text" class="form-control ckeditor" id="name_product" name="name_product" value="{{ request.form.get('name_product', '') }}" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="price">Цена: </label>
+                                    <input type="text" class="form-control ckeditor" id="price" name="price" value="{{ request.form.get('price', '') }}" min="0" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="volume">Объём в литрах: </label>
+                                    <input type="text" class="form-control ckeditor" id="volume" name="volume" value="{{ request.form.get('volume', '') }}" min="0.25" max="10" step="0.01" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="id_categories">Категория: </label>
+                                    <select name="id_categories" id="id_categories" onchange="toggleFields()">
+                                        <option value="" disabled selected>Выберите категорию</option>
+                                        {% for category in categories %} 
+                                        <option value="{{ category['id_categories'] }}">{{ category['name_categories'] }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div id="fields-category-1-2" style="display: none;">
+                                    <div class="form-group">
+                                        <label for="id_type_material">Тип материала: </label>
+                                        <select name="id_type_material" id="id_type_material">
+                                            <option value="" disabled selected>Выберите тип материала</option>
+                                            {% for material in type_material %} 
+                                            <option value="{{ material['id_type_material'] }}">{{ material['name_type_material'] }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="id_type_method_application">Метод нанесения: </label>
+                                        <select name="id_type_method_application" id="id_type_method_application">
+                                            <option value="" disabled selected>Выберите метод нанесения</option>
+                                            {% for method_application in type_method_application %} 
+                                            <option value="{{ method_application['id_type_method_application'] }}">{{ method_application['name_method_application'] }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="id_type_coloring_agent">Красящее вещество: </label>
+                                        <select name="id_type_coloring_agent" id="id_type_coloring_agent">
+                                            <option value="" disabled selected>Выберите красящее вещество</option>
+                                            {% for coloring_agent in type_coloring_agent %} 
+                                            <option value="{{ coloring_agent['id_type_coloring_agent'] }}">{{ coloring_agent['name_type_coloring_agent'] }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="id_type_color">Цвет: </label>
+                                        <select name="id_type_color" id="id_type_color">
+                                            <option value="" disabled selected>Выберите цвет</option>
+                                            {% for color in type_color %} 
+                                            <option value="{{ color['id_type_color'] }}">{{ color['name_color'] }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="id_type_gloss">Блеск: </label>
+                                        <select name="id_type_gloss" id="id_type_gloss">
+                                            <option value="" disabled selected>Выберите блеск</option>
+                                            {% for gloss in type_gloss %} 
+                                            <option value="{{ gloss['id_type_gloss'] }}">{{ gloss['name_gloss'] }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div id="fields-category-3" style="display: none;">
+                                    <div class="form-group">
+                                        <label for="id_type_material">Тип материала: </label>
+                                        <select name="id_type_material" id="id_type_material">
+                                            <option value="" disabled selected>Выберите тип материала</option>
+                                            {% for material in type_material %} 
+                                            <option value="{{ material['id_type_material'] }}">{{ material['name_type_material'] }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="id_type_method_application">Метод нанесения: </label>
+                                        <select name="id_type_method_application" id="id_type_method_application">
+                                            <option value="" disabled selected>Выберите метод нанесения</option>
+                                            {% for method_application in type_method_application %} 
+                                            <option value="{{ method_application['id_type_method_application'] }}">{{ method_application['name_method_application'] }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                    
+                                <button type="submit" class="sub-edit return-customer-btn">Подтвердить</button>
+
+                            </form>
+
+                            {% if session.login %}
+                                {% if session.id_roles == 1 %}
+
+                            <table class="table">
+
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Тип материала</th>
+                                    <th scope="col">Метод нанесения</th>
+                                    <th scope="col">Тип красителя</th>
+                                    <th scope="col">Цвет</th>
+                                    <th scope="col">Блеск</th>                                                  
+                                  </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+
+                                        <td style="text-align: center;">
+
+                                            <button class="btn return-customer-btn" id="openModal1"data-toggle="modal" data-target="#myModal1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+                                                </svg>
+                                            </button>
+
+                                        </td>
+
+                                        <td style="text-align: center;">
+
+                                            <button class="btn return-customer-btn" id="openModal2"data-toggle="modal" data-target="#myModal2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+                                                </svg>
+                                            </button>
+
+                                        </td>
+
+                                        <td style="text-align: center;">
+
+                                            <button class="btn return-customer-btn" id="openModal3"data-toggle="modal" data-target="#myModal3">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+                                                </svg>
+                                            </button>
+
+                                        </td>
+
+                                        <td style="text-align: center;">
+
+                                            <button class="btn return-customer-btn" id="openModal4"data-toggle="modal" data-target="#myModal4">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+                                                </svg>
+                                            </button>
+
+                                        </td>
+
+                                        <td style="text-align: center;">
+
+                                            <button class="btn return-customer-btn" id="openModal5"data-toggle="modal" data-target="#myModal5">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+                                                </svg>
+                                            </button>
+
+                                        </td>
+                                    
+                                    </tr>
+                                
+                                </tbody>
+
+                            </table>
+
+                                {% endif %}
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Модальное окно 1-->
+                        <div class="modal" id="myModal1" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Модальное окно 1</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <form id="typeMaterialForm">
+                                            <div class="form-group">
+                                                <!-- <label for="id_type_material">Тип материала: </label> -->
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <!-- <th width="50px">ID</th> -->
+                                                             <td></td>
+                                                            <th>Тип материала</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="materialTableBody">
+                                                        {% for material in type_material %}
+                                                            <tr>
+                                                                <!-- <td>{{ material['id_type_material'] }}</td> -->
+                                                                 <td></td>
+                                                                <td>
+                                                                    <input type="text" name="material_{{ material['id_type_material'] }}" id="material_{{ material['id_type_material'] }}" value="{{ material['name_type_material'] }}">
+                                                                </td>
+                                                                <td>
+                                                                    <button class="btn btn-danger" onclick="confirmDelete('/delete_type_material/{{ material.id_type_material }}')">Удалить</button>
+                                                                </td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                        <tr>
+                                                            <td></td>
+                                                            <td>
+                                                                <input type="text" name="new_material_{{ type_material|length }}" id="new_material_{{ type_material|length }}" placeholder="Добавить новый материал">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>                                                    
+                                                </table>
+                                            </div>
+                                        </form>
+                                    
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" id="addInputField1">Добавить поле</button>
+                                        <button type="button" class="btn btn-primary" id="saveMaterialChanges">Сохранить изменения</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- Модальное окно 2-->
+                        <div class="modal" id="myModal2" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Модальное окно 2</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <form id="typeMethodApplicationForm">
+                                            <div class="form-group">
+                                                <!-- <label for="id_type_material">Метод нанесения: </label> -->
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <!-- <th width="50px">ID</th> -->
+                                                            <td></td>
+                                                            <th>Метод нанесения</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="MethodApplicationTableBody">
+                                                        {% for material in type_method_application %}
+                                                            <tr>
+                                                                <!-- <td>{{ material['id_type_method_application'] }}</td> -->
+                                                                <td></td>
+                                                                <td>
+                                                                    <input type="text" name="material_{{ material['id_type_method_application'] }}" id="material_{{ material['id_type_method_application'] }}" value="{{ material['name_method_application'] }}">
+                                                                </td>
+                                                                <td>
+                                                                    <button class="btn btn-danger" onclick="confirmDelete('/delete_type_method_application/{{ material.id_type_method_application }}')">Удалить</button>
+                                                                </td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                        <tr>
+                                                            <td></td>
+                                                            <td>
+                                                                <input type="text" name="new_material_{{ type_method_application|length }}" id="new_material_{{ type_method_application|length }}" placeholder="Добавить новый материал">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>                                                    
+                                                </table>
+                                            </div>
+                                        </form>
+                                    
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" id="addInputField2">Добавить поле</button>
+                                        <button type="button" class="btn btn-primary" id="saveMethodApplicationChanges">Сохранить изменения</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- Модальное окно 3-->
+                        <div class="modal" id="myModal3" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Модальное окно 3</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <form id="typeColoringAgentForm">
+                                            <div class="form-group">
+                                                <!-- <label for="id_type_material">Тип красящего вещества: </label> -->
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <!-- <th width="50px">ID</th> -->
+                                                            <td></td>
+                                                            <th>Красящее вещество</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="ColoringAgentTableBody">
+                                                        {% for material in type_coloring_agent %}
+                                                            <tr>
+                                                                <!-- <td>{{ material['id_type_coloring_agent'] }}</td> -->
+                                                                <td></td>
+                                                                <td>
+                                                                    <input type="text" name="material_{{ material['id_type_coloring_agent'] }}" id="material_{{ material['id_type_coloring_agent'] }}" value="{{ material['name_type_coloring_agent'] }}">
+                                                                </td>
+                                                                <td>
+                                                                    <button class="btn btn-danger" onclick="confirmDelete('/delete_type_coloring_agent/{{ material.id_type_coloring_agent }}')">Удалить</button>
+                                                                </td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                        <tr>
+                                                            <td></td>
+                                                            <td>
+                                                                <input type="text" name="new_material_{{ type_coloring_agent|length }}" id="new_material_{{ type_coloring_agent|length }}" placeholder="Добавить новый материал">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>                                                    
+                                                </table>
+                                            </div>
+                                        </form>
+                                    
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" id="addInputField3">Добавить поле</button>
+                                        <button type="button" class="btn btn-primary" id="saveColoringAgentChanges">Сохранить изменения</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- Модальное окно 4-->
+                        <div class="modal" id="myModal4" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Модальное окно 4</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <form id="typeColorForm">
+                                            <div class="form-group">
+                                                <!-- <label for="id_type_material">Цвет: </label> -->
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <!-- <th width="50px">ID</th> -->
+                                                            <td></td>
+                                                            <th>Цвет</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="ColorTableBody">
+                                                        {% for material in type_color %}
+                                                            <tr>
+                                                                <!-- <td>{{ material['id_type_color'] }}</td> -->
+                                                                <td></td>
+                                                                <td>
+                                                                    <input type="text" name="material_{{ material['id_type_color'] }}" id="material_{{ material['id_type_color'] }}" value="{{ material['name_color'] }}">
+                                                                </td>
+                                                                <td>
+                                                                    <button class="btn btn-danger" onclick="confirmDelete('/delete_type_color/{{ material.id_type_color }}')">Удалить</button>
+                                                                </td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                        <tr>
+                                                            <td></td>
+                                                            <td>
+                                                                <input type="text" name="new_material_{{ type_color|length }}" id="new_material_{{ type_color|length }}" placeholder="Добавить новый материал">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>                                                    
+                                                </table>
+                                            </div>
+                                        </form>
+                                    
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" id="addInputField4">Добавить поле</button>
+                                        <button type="button" class="btn btn-primary" id="saveColorChanges">Сохранить изменения</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- Модальное окно 5-->
+                        <div class="modal" id="myModal5" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Модальное окно 4</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <form id="typeGlossForm">
+                                            <div class="form-group">
+                                                <!-- <label for="id_type_material">Блеск: </label> -->
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <!-- <th width="50px">ID</th> -->
+                                                             <td></td>
+                                                            <th>Блеск</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="GlossTableBody">
+                                                        {% for material in type_gloss %}
+                                                            <tr>
+                                                                <!-- <td>{{ material['id_type_gloss'] }}</td> -->
+                                                                 <td></td>
+                                                                <td>
+                                                                    <input type="text" name="material_{{ material['id_type_gloss'] }}" id="material_{{ material['id_type_gloss'] }}" value="{{ material['name_gloss'] }}">
+                                                                </td>
+                                                                <td>
+                                                                    <button class="btn btn-danger" onclick="confirmDelete('/delete_type_gloss/{{ material.id_type_gloss }}')">Удалить</button>
+                                                                </td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                        <tr>
+                                                            <td></td>
+                                                            <td>
+                                                                <input type="text" name="new_material_{{ type_gloss|length }}" id="new_material_{{ type_gloss|length }}" placeholder="Добавить новый материал">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>                                                    
+                                                </table>
+                                            </div>
+                                        </form>
+                                    
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" id="addInputField5">Добавить поле</button>
+                                        <button type="button" class="btn btn-primary" id="saveGlossChanges">Сохранить изменения</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/addprod.js') }}"></script>
+
+
+
+{% endblock %}

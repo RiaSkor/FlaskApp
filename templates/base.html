@@ -1,0 +1,83 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block head %}
+    {{ ckeditor.load() }}
+    {{ super() }}
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"> -->
+    <!-- {% block scripts %}
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+    {% endblock %} -->
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">    
+
+    <!-- animate css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/animate.css') }}">
+
+    <!-- nivo slider css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/nivo-slider.css') }}">
+    
+    <!-- fontawesome css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/font-awesome.min.css') }}">
+        
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/bootstrap.min.css') }}">
+
+    <!-- default css  -->
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/default.css') }}">
+    
+    
+
+
+{% endblock %}
+
+{% block title %}
+    онлайн-каталог лакокрасочных материалов
+{% endblock %}
+
+{% block navbar %}
+    {% include '_header.html' %}
+{% endblock %}
+
+{% block content %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+         <ul>
+            {% for category, message in messages %}
+            <li class="alert alert-{{category}}">{{ message }}</li>
+            {% endfor %}
+         </ul>
+         {% endif %}
+    {% endwith %}
+    {% block sub_content %}
+    {% endblock %}
+
+{% block footer %}
+    {% include '_footer.html' %}
+{% endblock %}
+
+
+
+    
+    
+    <script src="{{ url_for('static', filename='js/vendor/jquery-1.12.4.min.js') }}"></script>
+
+    
+    <script src="{{ url_for('static', filename='js/jquery.meanmenu.min.js') }}"></script>
+    
+    <script src="{{ url_for('static', filename='js/jquery.scrollUp.js') }}"></script>
+    
+    <script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+    
+    <script src="{{ url_for('static', filename='js/wow.min.js') }}"></script>
+    
+    <script src="{{ url_for('static', filename='js/jquery.nivo.slider.js') }}"></script>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    
+
+
+
+{% endblock %}
+

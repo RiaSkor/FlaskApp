@@ -1,0 +1,114 @@
+<navbar>
+    <header>
+        
+    <!-- Header Top Start -->
+    <div class="header-top">
+        <div class="container">
+            <div class="row">
+                <!-- Header Top left Start -->                        
+                <div class="col-lg-4 col-md-12 d-center">
+                    <div class="header-top-left">
+                        <img src="static/img/call.png" alt="">
+                        Позвоните нам : +79887777772
+                    </div>                        
+                </div>
+                <!-- Header Top left End -->
+                <!-- Search Box Start -->                                        
+                <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+                    <div class="search-box-view">
+                        {% if session.login %}
+                        <form action="/search" method="post">
+                            <input type="text" class="email" placeholder="Введите название продукта..." name="query">
+                            <button type="submit" class="submit"></button>
+                        </form>
+                        {% endif %}
+                    </div>                                           
+                </div>
+                <!-- Search Box End -->
+
+                <!-- Header Top Right Start -->                                       
+                <div class="col-lg-4 col-md-12">
+
+                    <div class="header-top-right">
+                        <ul class="header-list-menu f-right">
+
+                            
+
+                        </ul>
+                        <!-- Header-list-menu End -->
+                    </div>
+
+                </div>
+                <!-- Header Top Right End -->
+                 
+            </div>
+        </div>
+        <!-- Container End -->
+    </div>
+    <!-- Header Top End -->
+    <!-- Header Bottom Start -->
+    <div class="header-bottom header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-lg-2 col-sm-5 col-5">
+                    <div class="logo">
+                        <a href="/"><img src="static/img/logo.png" alt="logo-image"></a>
+                    </div>
+                </div>
+                <!-- Primary Vertical-Menu End -->
+                <!-- Search Box Start -->
+                <div class="col-xl-6 col-lg-7 d-none d-lg-block">
+                    <div class="middle-menu pull-right">
+                        <nav>
+                            <ul class="middle-menu-list">
+                                <li><a href="/">Главная</a></li>
+                                <li><a href="/about2">О нас</a></li>
+                                {% if session.login %}
+                                <li><a href="/products2">Товары<i class="fa fa-angle-down"></i></a>
+                                    <!-- Home Version Dropdown Start -->
+                                    <ul class="ht-dropdown dropdown-style-two">                                        
+                                        <li><a href="/lacquer2">Лаки</a></li>
+                                        <li><a href="/paints2">Краски</a></li>
+                                        <li><a href="/pestilence2">Морилки</a></li>
+                                    </ul>
+                                    <!-- Home Version Dropdown End -->
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- Search Box End -->
+                <!-- Cartt Box Start -->
+                <div class="col-lg-3 col-sm-7 col-7">
+                    <div class="cart-box text-right">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-cog"></i></a>
+                                <ul class="ht-dropdown">
+                                    {% if session.login %}
+                                        <li><a href="/logout">Выход</a></li>
+                                        {% if session.id_roles == 1 %}
+                                        <li><a href="/register_admin2">Регистрация модератора</a></li>
+                                        {% endif %}
+                                    {% else %}
+                                        <li><a href="/login2">Вход</a></li>
+                                        <li><a href="/register2">Регистрация</a></li>
+                                        <!-- <li><a href="/logadmin">Для админа</a></li> -->
+                                    {% endif %}
+                                </ul>
+                            </li>
+                                
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Cartt Box End -->
+            </div>
+            <!-- Row End -->
+        </div>
+        <!-- Container End -->
+    </div>
+    <!-- Header Bottom End -->
+    </header>
+    <!-- Header Area End -->
+</navbar>

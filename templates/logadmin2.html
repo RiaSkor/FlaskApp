@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block sub_content %}
+    
+    <div class="container d-flex align-items-center justify-content-center" style="min-height: 60vh;">
+        <div class="card w-100" style="max-width: 400px;">
+            <div class="card-body">
+                <h3 class="card-title text-center mb-4">Вход для сотрудников</h3>
+    
+            <form method="POST">
+                
+                <div class="form-group">
+                    <label for="login_staff">Логин</label>
+                    <input type="text" class="form-control" id="login_staff" name="login_staff" aria-describedby="emailHelp" placeholder="Введите логин">
+                </div>
+                <div class="form-group">
+                <label for="password_staff">Пароль</label>
+                <input type="password" class="form-control" id="password_staff" name="password_staff" placeholder="Введите пароль">
+                </div>
+                    
+                <button type="submit" class="btn btn-primary return-customer-btn">Войти</button>
+            </form>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

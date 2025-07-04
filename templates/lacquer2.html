@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% block sub_content %}
+
+  <!-- Breadcrumb Start -->
+  <div class="breadcrumb-area ptb-60 ptb-sm-30">
+    <div class="container">
+        <div class="breadcrumb">
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/products2">Товары</a></li>
+                <li class="active"><a href="/lacquer2">Лаки</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- Container End -->
+  </div>
+  <!-- Breadcrumb End -->
+
+  <!-- Cart Main Area Start -->
+  <div class="cart-main-area pb-80 pb-sm-50">
+    <div class="container">
+       <h2 class="text-capitalize sub-heading">Лаки</h2>
+      {% if session.login %}
+        {% if session.id_roles == 1 %}
+        <a href="/add-product" class="btn return-customer-btn">Добавить новый товар</a>
+        {% elif session.id_roles == 2 %}
+        <a href="/add-product" class="btn return-customer-btn">Добавить новый товар</a>
+        {% endif %}
+      {% endif %}
+      <div class="row">
+          <div class="col-md-12">
+            <!-- Form Start -->
+            <form action="#">
+            <br>
+              
+              {% if products %}                  
+
+              <!-- Product Categorie List Start -->
+              <div class="col-lg-12 order-lg-8">                  
+
+                  <div class="main-categorie">
+                      <!-- Grid & List Main Area End -->
+                      <div class="tab-content fix">
+                              <div class="row">
+                                  {% for products in products %}
+                                  <!-- Single Product Start -->                    
+                                  <div class="col-lg-4 col-sm-6">
+                                      <div class="single-product">
+                                          <!-- Product Content Start -->
+                                          <div class="pro-content">                               
+                                              <h4><a href="/selected-product{{ products['id_product'] }}">{{products['name_product']}}</a></h4>
+                                              <p><span class="price">{{products['price']}} рублей</span> за {{products['volume']}} л.</p>
+                                              <p><br></p>
+
+                                              {% if session.login %}
+                                                {% if session.id_roles == 1 %}
+                                                <div class="pro-actions">
+                                                    <div class="actions-secondary">
+                                                        <a href="/edit-product{{ products['id_product'] }}" class="add-cart" href="" data-toggle="tooltip">Редактировать</a>
+                                                        <h3><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{ products['id_product'] }}">Удалить</button></h3>
+                                                    </div>
+                                                </div>
+
+
+                                                <!-- Модальное окно -->
+                                                <div class="modal fade" id="deleteModal{{ products['id_product'] }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ products['id_product'] }}" aria-hidden="true">
+                                                  <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                      <div class="modal-header">
+                                                        <h5 class="modal-title" id="deleteModalLabel{{ products['id_product'] }}">Подтверждение удаления</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                          <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                      </div>
+                                                      <div class="modal-body">
+                                                        Вы уверены, что хотите удалить этот продукт?
+                                                      </div>
+                                                      <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                                                        <a href="/delete-product/{{ products['id_product'] }}" class="btn btn-danger">Удалить</a>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+
+
+                                                {% endif %}
+
+                                                {% if session.id_roles == 2 %}
+                                                <div class="pro-actions">
+                                                    <div class="actions-secondary">
+                                                        <a href="/edit-product{{ products['id_product'] }}" class="add-cart" href="" data-toggle="tooltip">Редактировать</a>
+                                                    </div>
+                                                </div>
+                                                {% endif %}
+                                              {% endif %}
+
+                                          </div>
+                                          <!-- Product Content End -->
+                                      </div>
+                                  </div>
+                                  <!-- Single Product End -->
+                                  {% endfor %}
+                              </div>
+                      </div>
+                      <!-- Grid & List Main Area End -->
+                  </div>
+
+              </div>
+          {% endif %}
+                    
+          </form>
+          <!-- Form End -->
+        </div>
+      </div>
+      <!-- Row End -->
+    </div>
+  </div>
+  <!-- Cart Main Area End -->
+
+{% endblock %}
